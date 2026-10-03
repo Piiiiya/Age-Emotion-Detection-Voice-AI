@@ -1,4 +1,6 @@
+
 import sys
+import tempfile
 from pathlib import Path
 
 import streamlit as st
@@ -226,7 +228,7 @@ if uploaded_file is not None:
     if analyze_button:
 
         # ----------------------------------------------------
-        # Save temporary file
+        # SAVE TEMPORARY FILE
         # ----------------------------------------------------
 
         temp_dir = PROJECT_ROOT / "outputs" / "temp"
@@ -236,23 +238,35 @@ if uploaded_file is not None:
             exist_ok=True
         )
 
-        temp_path = temp_dir / uploaded_file.name
-
-        with open(temp_path, "wb") as file:
-
-            file.write(
-                uploaded_file.getbuffer()
-            )
-
-        # ----------------------------------------------------
-        # Run pipeline
-        # ----------------------------------------------------
+        temp_path = None
 
         try:
 
+            # Use a unique temporary filename to avoid
+            # overwriting files during simultaneous requests.
+
+            suffix = Path(uploaded_file.name).suffix.lower()
+
+            with tempfile.NamedTemporaryFile(
+                mode="wb",
+                suffix=suffix,
+                prefix="voice_",
+                dir=temp_dir,
+                delete=False
+            ) as temp_file:
+
+                temp_file.write(
+                    uploaded_file.getbuffer()
+                )
+
+                temp_path = Path(temp_file.name)
+
+            # ------------------------------------------------
+            # RUN PIPELINE
+            # ------------------------------------------------
+
             with st.spinner(
-                "🔄 Analyzing voice... "
-                "Please wait."
+                "🔄 Analyzing voice... Please wait."
             ):
 
                 result = analyze_voice(
@@ -260,7 +274,7 @@ if uploaded_file is not None:
                 )
 
             # =================================================
-            # FEMALE
+            # FEMALE VOICE REJECTION
             # =================================================
 
             if result["status"] == "rejected":
@@ -269,26 +283,11 @@ if uploaded_file is not None:
                     "Upload male voice."
                 )
 
-                st.markdown(
-                    f"""
-                    <div class="result-card">
-
-                    <div class="result-title">
-                    📊 Analysis Result
-                    </div>
-
-                    <div class="result-row">
-                    <b>Gender:</b>
-                    Female
-                    </div>
-
-                    </div>
-                    """,
-                    unsafe_allow_html=True
-                )
+                # Do not display an Analysis Result card
+                # for rejected female voices.
 
             # =================================================
-            # MALE
+            # MALE VOICE
             # =================================================
 
             else:
@@ -296,24 +295,24 @@ if uploaded_file is not None:
                 gender = result["gender"]
                 age_group = result["age_group"]
 
-                # ------------------------------------------------
+                st.success(
+                    "✅ Voice analysis completed successfully."
+                )
+
+                # --------------------------------------------
                 # SENIOR CITIZEN
-                # ------------------------------------------------
+                # --------------------------------------------
 
                 if result["senior_citizen"]:
 
                     emotion = result["emotion"]
-
-                    st.success(
-                        "✅ Voice analysis completed."
-                    )
 
                     st.markdown(
                         f"""
                         <div class="result-card">
 
                         <div class="result-title">
-                        📊 Analysis Result
+                        🎯 Analysis Result
                         </div>
 
                         <div class="result-row">
@@ -341,22 +340,18 @@ if uploaded_file is not None:
                         unsafe_allow_html=True
                     )
 
-                # ------------------------------------------------
-                # NON-SENIOR
-                # ------------------------------------------------
+                # --------------------------------------------
+                # NON-SENIOR CITIZEN
+                # --------------------------------------------
 
                 else:
-
-                    st.success(
-                        "✅ Voice analysis completed."
-                    )
 
                     st.markdown(
                         f"""
                         <div class="result-card">
 
                         <div class="result-title">
-                        📊 Analysis Result
+                        🎯 Analysis Result
                         </div>
 
                         <div class="result-row">
@@ -395,6 +390,22 @@ if uploaded_file is not None:
             ):
 
                 st.exception(error)
+
+        finally:
+
+            # ------------------------------------------------
+            # CLEAN UP TEMPORARY AUDIO
+            # ------------------------------------------------
+
+            if temp_path is not None:
+
+                try:
+
+                    if temp_path.exists():
+                        temp_path.unlink()
+
+                except OSError:
+                    pass
 
 
 # ============================================================
