@@ -5,9 +5,31 @@ An AI/ML-based voice analysis application that processes audio recordings to cla
 The application uses a machine-learning pipeline and a Streamlit graphical user interface to provide predictions from uploaded audio files.
 
 
-## 🚀 Live Demo
+## 🚀 Live Application Demo
 
-**Try the Application:** [Age & Emotion Detection Voice AI](https://age-emotion-detection-voice-ai-mzfqvqk2wdvwecikszjsrx.streamlit.app/)
+The Age & Emotion Detection Voice AI application is deployed on Streamlit Community Cloud.
+
+**[Click here to try the live application](https://age-emotion-detection-voice-ai-mzfqvqk2wdvwecikszjsrx.streamlit.app/)**
+
+## 📸 Application Screenshots
+
+### Application Interface
+![Application Interface](screenshots/predictions/application_interface.png)
+
+### Female Voice Rejection
+![Female Voice Rejection](screenshots/predictions/female_voice_rejection.png)
+
+### Male Voice Prediction
+![Male Voice Prediction](screenshots/predictions/male_voice_prediction.png)
+
+### Voice Analysis Result
+![Voice Analysis Result](screenshots/predictions/voice_analysis_result.png)
+
+### Live Application
+![Live Application](screenshots/predictions/live_app_screenshot.png)
+
+### Live Prediction Result
+![Live Prediction Result](screenshots/predictions/live_prediction_result.png)
 
 **GitHub Repository:** [View Source Code](https://github.com/Piiiiya/Age-Emotion-Detection-Voice-AI)
 
