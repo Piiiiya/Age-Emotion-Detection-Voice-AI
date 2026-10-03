@@ -1,0 +1,14 @@
+{
+    "logistic_regression": {
+        "accuracy": 0.16437610559259763,
+        "balanced_accuracy": 0.23193214193918776,
+        "macro_f1": 0.16566292545417524,
+        "weighted_f1": 0.15769929063995913
+    },
+    "random_forest": {
+        "accuracy": 0.21540345625255136,
+        "balanced_accuracy": 0.20170401078681613,
+        "macro_f1": 0.1825162748293665,
+        "weighted_f1": 0.20944679621610526
+    }
+}

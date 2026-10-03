@@ -1,0 +1,29 @@
+
+# Core data processing
+numpy==2.4.6
+pandas==3.0.6
+scipy==1.17.1
+
+# Machine Learning
+scikit-learn==1.9.1
+joblib==1.6.0
+
+# Deep Learning
+tensorflow==2.21.0
+
+# Audio processing
+librosa==0.11.0
+soundfile==0.14.0
+audioread==3.1.0
+pydub==0.25.1
+numba==0.67.0
+
+# Data visualization
+matplotlib==3.11.2
+seaborn==0.13.2
+
+# Web application
+streamlit==1.64.0
+
+# Progress bars
+tqdm==4.70.1

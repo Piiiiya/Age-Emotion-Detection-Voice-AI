@@ -1,0 +1,81 @@
+﻿# Python environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Datasets
+crema_d/
+data/raw/
+data/processed/
+data/**/features/
+data/**/features_*/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+*.bak
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Large experimental model
+models/age/age_random_forest.joblib
+
+# Generated large feature arrays
+outputs/**/X_train.npy
+outputs/**/X_val.npy
+outputs/**/X_test.npy
+outputs/**/y_train.npy
+outputs/**/y_val.npy
+outputs/**/y_test.npy
+
+# Local environment and editor
+.env
+.env.*
+.vscode/
+.idea/
+
+# Streamlit secrets
+.streamlit/secrets.toml
+
+# ============================================================
+# GITHUB CLEANUP - DATA, MODELS AND GENERATED OUTPUTS
+# ============================================================
+
+# Exclude dataset metadata and local dataset references
+data/metadata/
+
+# Exclude temporary audio files
+outputs/temp/
+
+# Exclude generated NumPy arrays
+outputs/**/*.npy
+
+# Exclude experimental models by default
+models/**
+
+# Keep only the models required by the application
+!models/age/
+!models/age/age_linear_svm.joblib
+!models/age/age_svm_scaler.joblib
+
+!models/gender/
+!models/gender/gender_model.joblib
+!models/gender/gender_scaler.joblib
+!models/gender/gender_config.json
+
+!models/emotion_cremad_svm_v5.joblib
+!models/emotion_cremad_svm_v5_classes.json

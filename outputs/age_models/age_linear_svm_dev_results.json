@@ -1,0 +1,19 @@
+{
+    "model": "LinearSVC",
+    "C": 1.0,
+    "class_weight": "balanced",
+    "max_iter": 5000,
+    "accuracy": 0.1556674377466322,
+    "balanced_accuracy": 0.24622936965268294,
+    "macro_f1": 0.16070090108599736,
+    "weighted_f1": 0.14478153506068814,
+    "training_time_seconds": 1321.5979626178741,
+    "classes": [
+        "00_19",
+        "20_29",
+        "30_39",
+        "40_49",
+        "50_59",
+        "60_plus"
+    ]
+}

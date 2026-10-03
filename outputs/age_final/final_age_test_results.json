@@ -1,0 +1,24 @@
+{
+    "model": "LinearSVC",
+    "model_file": "C:\\Users\\hasibul shaikh\\Documents\\Age_Emotion_Detection_Voice_AI\\models\\age\\age_linear_svm.joblib",
+    "test_samples": 7389,
+    "accuracy": 0.22817701989443767,
+    "balanced_accuracy": 0.27820182301962737,
+    "macro_f1": 0.18059454857465831,
+    "weighted_f1": 0.24856921638435556,
+    "senior_60_plus": {
+        "actual_samples": 185,
+        "predicted_samples": 971,
+        "correct_predictions": 63,
+        "recall": 0.34054054054054056,
+        "precision": 0.06488156539649846
+    },
+    "classes": [
+        "00_19",
+        "20_29",
+        "30_39",
+        "40_49",
+        "50_59",
+        "60_plus"
+    ]
+}
